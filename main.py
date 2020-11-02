@@ -368,7 +368,7 @@ ALPHABET: Dict[str, BoxShape] = {
     ' ': empty_box_shape
 }
 
-DEFAULT_LETTER_WIDTH = 5
+DEFAULT_LETTER_WIDTH = 3
 DEFAULT_LETTER_HEIGHT = 5
 DEFAULT_HORIZ_SPACING = 1
 DEFAULT_VERT_SPACING = 1
@@ -382,7 +382,7 @@ def get_grid(word: str,
     # todo could use an enum for aliases to throw smarter errors
     chars = [char for char in word.upper()]
     box_shapes = [ALPHABET[char] for char in chars]
-    col_starts = [idx * (DEFAULT_LETTER_WIDTH + DEFAULT_HORIZ_SPACING) + DEFAULT_HORIZ_SPACING
+    col_starts = [idx * (letter_width + DEFAULT_HORIZ_SPACING) + DEFAULT_HORIZ_SPACING
                   for idx in range(len(word))]
     regions = [box_shape(row_start=DEFAULT_VERT_SPACING,
                          height=letter_height,
@@ -428,4 +428,4 @@ BOX_SHAPE is a function taking a coordinate pair for the upper-left corner of th
 
 if __name__ == '__main__':
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    print_grid('dude', text_emoji_alias=':green_circle:')
+    print_grid(alphabet, text_emoji_alias=':green_circle:')
